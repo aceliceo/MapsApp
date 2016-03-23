@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="traffic_fast">#4CAF50</color>
+    <color name="traffic_medium">#FF9100</color>
+    <color name="traffic_slow">#D0021B</color>
 </resources>

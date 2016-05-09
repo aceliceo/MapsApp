@@ -111,7 +111,7 @@ public class MyLocationDemoActivity extends AppCompatActivity
             // Access to the location has been granted to the app.
             mMap.setMyLocationEnabled(true);
 
-            final LatLng destination = new LatLng(32.732563, -117.191763);
+            final LatLng destination = new LatLng(32.733538, -117.193201);
             final LatLng car = new LatLng(32.534368, -116.966929);
             final LatLng torreyPines = new LatLng(32.889390, -117.227211);
             final LatLng santaBarbara = new LatLng(34.413708, -119.691582);
@@ -124,7 +124,7 @@ public class MyLocationDemoActivity extends AppCompatActivity
                     LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
 
                     LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                    builder.include(zoo);
+                    builder.include(currentLocation);
                     builder.include(destination);
 
                     LatLngBounds bounds = builder.build();
@@ -136,7 +136,7 @@ public class MyLocationDemoActivity extends AppCompatActivity
                             .position(destination)
                             .title("San Diego Airport"));
 
-                    drawRoute(zoo, destination);
+                    drawRoute(currentLocation, destination);
                 }
 
                 @Override
@@ -172,11 +172,11 @@ public class MyLocationDemoActivity extends AppCompatActivity
                     int minutesRoute = DurationTimeParser.getDurationInMinutes(duration);
 
                     if(minutesRoute > 35){
-                        durationText.setTextColor(getColor(R.color.traffic_slow));
+                        durationText.setTextColor(ContextCompat.getColor(MyLocationDemoActivity.this ,R.color.traffic_slow));
                     }else if(minutesRoute > 15){
-                        durationText.setTextColor(getColor(R.color.traffic_medium));
+                        durationText.setTextColor(ContextCompat.getColor(MyLocationDemoActivity.this, R.color.traffic_medium));
                     }else{
-                        durationText.setTextColor(getColor(R.color.traffic_fast));
+                        durationText.setTextColor(ContextCompat.getColor(MyLocationDemoActivity.this, R.color.traffic_fast));
                     }
                 }
 

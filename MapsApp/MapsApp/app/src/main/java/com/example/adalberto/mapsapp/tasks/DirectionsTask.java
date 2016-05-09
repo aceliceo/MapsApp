@@ -118,8 +118,11 @@ public class DirectionsTask extends AsyncTask <Void, Void, Void>{
             JSONObject startLocation;
             JSONObject endLocation;
             JSONObject polyline;
+            JSONObject stepDuration;
             double latitude;
             double longitude;
+
+            int stepsDurationTotal = 0;
 
             for(int i=0; i < stepsArray.length(); i++){
                 step = stepsArray.getJSONObject(i);
@@ -131,6 +134,10 @@ public class DirectionsTask extends AsyncTask <Void, Void, Void>{
 
                 polyline = step.getJSONObject("polyline");
                 ArrayList<LatLng> points = decodePoly(polyline.get("points").toString());
+
+                stepDuration = step.getJSONObject("duration");
+                stepsDurationTotal += DurationTimeParser.getDurationInMinutes(stepDuration.getString("text"));
+
 
                 for(int j=0; j < points.size(); j++){
                     latitude = points.get(j).latitude;
@@ -144,7 +151,9 @@ public class DirectionsTask extends AsyncTask <Void, Void, Void>{
                 listGeopoints.add(new LatLng(latitude, longitude));
             }
 
-            listener.done(listGeopoints, duration);
+            String temp = ("" + stepsDurationTotal ); //TODO: Use this data?
+
+            listener.done(listGeopoints, "" + duration);
         }catch (Exception ex){
             Log.e("DirectionsTask", ex.getMessage());
         }
